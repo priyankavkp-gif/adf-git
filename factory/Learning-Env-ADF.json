@@ -1,0 +1,9 @@
+{
+	"name": "Learning-Env-ADF",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5f0b8ffb-8d28-427f-9c3d-2d317da1f9f8",
+		"tenantId": "6032fe65-1bc2-4175-ab38-2e92d4c558d2"
+	}
+}
