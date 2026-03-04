@@ -1,0 +1,9 @@
+{
+	"name": "Learning-Env-Copy",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5f6c8bdd-0f99-45e5-9949-155c55bc6246",
+		"tenantId": "6032fe65-1bc2-4175-ab38-2e92d4c558d2"
+	}
+}
