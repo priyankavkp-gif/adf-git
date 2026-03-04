@@ -14,6 +14,12 @@
 		"Lnk_Blob_Strg_connectionString": {
 			"value": ""
 		},
+		"Lnk_Sales_Tgt_password": {
+			"value": ""
+		},
+		"Lnk_pinkzBlob_connectionString": {
+			"value": ""
+		},
 		"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
 			"value": "pinkz.database.windows.net"
 		},
@@ -30,6 +36,15 @@
 			"value": "ADF_Sales_Target"
 		},
 		"Lnk_ADF_Sales_Target_properties_typeProperties_userName": {
+			"value": "pinkz"
+		},
+		"Lnk_Sales_Tgt_properties_typeProperties_server": {
+			"value": "pinkz.database.windows.net"
+		},
+		"Lnk_Sales_Tgt_properties_typeProperties_database": {
+			"value": "Sales_Tgt"
+		},
+		"Lnk_Sales_Tgt_properties_typeProperties_userName": {
 			"value": "pinkz"
 		},
 		"containerUri": {

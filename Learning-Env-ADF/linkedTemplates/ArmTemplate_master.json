@@ -19,6 +19,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Lnk_Blob_Strg'"
 		},
+		"Lnk_Sales_Tgt_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Lnk_Sales_Tgt'"
+		},
+		"Lnk_pinkzBlob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Lnk_pinkzBlob'"
+		},
 		"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "pinkz.database.windows.net"
@@ -40,6 +48,18 @@
 			"defaultValue": "ADF_Sales_Target"
 		},
 		"Lnk_ADF_Sales_Target_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "pinkz"
+		},
+		"Lnk_Sales_Tgt_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "pinkz.database.windows.net"
+		},
+		"Lnk_Sales_Tgt_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Sales_Tgt"
+		},
+		"Lnk_Sales_Tgt_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "pinkz"
 		},
@@ -79,6 +99,12 @@
 					"Lnk_Blob_Strg_connectionString": {
 						"value": "[parameters('Lnk_Blob_Strg_connectionString')]"
 					},
+					"Lnk_Sales_Tgt_password": {
+						"value": "[parameters('Lnk_Sales_Tgt_password')]"
+					},
+					"Lnk_pinkzBlob_connectionString": {
+						"value": "[parameters('Lnk_pinkzBlob_connectionString')]"
+					},
 					"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
 						"value": "[parameters('Lnk_ADF_Sales_Source_properties_typeProperties_server')]"
 					},
@@ -96,6 +122,15 @@
 					},
 					"Lnk_ADF_Sales_Target_properties_typeProperties_userName": {
 						"value": "[parameters('Lnk_ADF_Sales_Target_properties_typeProperties_userName')]"
+					},
+					"Lnk_Sales_Tgt_properties_typeProperties_server": {
+						"value": "[parameters('Lnk_Sales_Tgt_properties_typeProperties_server')]"
+					},
+					"Lnk_Sales_Tgt_properties_typeProperties_database": {
+						"value": "[parameters('Lnk_Sales_Tgt_properties_typeProperties_database')]"
+					},
+					"Lnk_Sales_Tgt_properties_typeProperties_userName": {
+						"value": "[parameters('Lnk_Sales_Tgt_properties_typeProperties_userName')]"
 					}
 				}
 			},
