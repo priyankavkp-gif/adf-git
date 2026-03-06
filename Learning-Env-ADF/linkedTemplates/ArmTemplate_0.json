@@ -487,6 +487,100 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/GetCSVFileName')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Lnk_pinkzstrgacct",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "CSV",
+						"container": "files-container"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Lnk_pinkzstrgacct')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/src_CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Lnk_pinkzstrgacct",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"ds_p_SheetName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().ds_p_SheetName",
+							"type": "Expression"
+						},
+						"folderPath": "CSV",
+						"container": "files-container"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Lnk_pinkzstrgacct')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tbl_CSVName')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Lnk_LoadExcelFiles",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"ds_tblName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": {
+						"value": "@dataset().ds_tblName",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Lnk_LoadExcelFiles')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pl_Excel_to_DB_NoLookUp')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -594,6 +688,141 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_Details')]",
 				"[concat(variables('factoryId'), '/datasets/ds_tableName')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_LoadMultipleCSV')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "LooopThruCSVFiles",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get CsvFileNames",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get CsvFileNames').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy_CSV_to_DB",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"tableOption": "autoCreate",
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "src_CSV",
+											"type": "DatasetReference",
+											"parameters": {
+												"ds_p_SheetName": {
+													"value": "@item().Name",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "tbl_CSVName",
+											"type": "DatasetReference",
+											"parameters": {
+												"ds_tblName": {
+													"value": "@item().Name",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					},
+					{
+						"name": "Get CsvFileNames",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "GetCSVFileName",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/GetCSVFileName')]",
+				"[concat(variables('factoryId'), '/datasets/src_CSV')]",
+				"[concat(variables('factoryId'), '/datasets/tbl_CSVName')]"
 			]
 		}
 	]
