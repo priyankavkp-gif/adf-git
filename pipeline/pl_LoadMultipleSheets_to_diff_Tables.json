@@ -22,8 +22,15 @@
 					},
 					"dataset": {
 						"referenceName": "Lnk_LoadExcelFilesDB",
-						"type": "DatasetReference"
-					}
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_TableName": {
+								"value": "@item.SheetName",
+								"type": "Expression"
+							}
+						}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
