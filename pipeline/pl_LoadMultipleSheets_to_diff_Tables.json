@@ -22,7 +22,7 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "ds_tbl_SheetName",
+						"referenceName": "tbl_WithSheetNames",
 						"type": "DatasetReference"
 					}
 				}
