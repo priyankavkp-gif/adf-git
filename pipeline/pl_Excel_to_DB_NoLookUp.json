@@ -6,6 +6,7 @@
 				"name": "Loop thru sheet names from file",
 				"type": "ForEach",
 				"dependsOn": [],
+				"userProperties": [],
 				"typeProperties": {
 					"items": {
 						"value": "@pipeline().parameters.SheetNames",
