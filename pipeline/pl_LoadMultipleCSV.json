@@ -67,7 +67,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"ds_p_SheetName": {
-											"value": "@item().SheetName",
+											"value": "@item().Name",
 											"type": "Expression"
 										}
 									}
@@ -79,7 +79,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"ds_tblName": {
-											"value": "@item().SheetName",
+											"value": "@item().Name",
 											"type": "Expression"
 										}
 									}
