@@ -1,0 +1,21 @@
+{
+	"name": "dset_TableName",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Lnk_LoadExcelDB",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_TableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_SheetName"
+		}
+	}
+}

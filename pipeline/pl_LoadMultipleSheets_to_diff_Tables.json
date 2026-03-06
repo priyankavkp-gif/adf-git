@@ -22,13 +22,7 @@
 					},
 					"dataset": {
 						"referenceName": "Lnk_LoadExcelFilesDB",
-						"type": "DatasetReference",
-						"parameters": {
-							"ds_TableName": {
-								"value": "@item.SheetName",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
 				}
@@ -103,11 +97,11 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "Lnk_LoadExcelFilesDB",
+									"referenceName": "dset_TableName",
 									"type": "DatasetReference",
 									"parameters": {
-										"ds_TableName": {
-											"value": "@item().SheetName",
+										"p_TableName": {
+											"value": "@item().value",
 											"type": "Expression"
 										}
 									}
