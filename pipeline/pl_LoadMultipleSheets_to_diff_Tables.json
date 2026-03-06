@@ -24,7 +24,10 @@
 						"referenceName": "Lnk_LoadExcelFilesDB",
 						"type": "DatasetReference",
 						"parameters": {
-							"ds_TableName": "SheetName"
+							"ds_TableName": {
+								"value": "@item().SheetName",
+								"type": "Expression"
+							}
 						}
 					},
 					"firstRowOnly": false
