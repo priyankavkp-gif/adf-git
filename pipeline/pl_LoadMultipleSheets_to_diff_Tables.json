@@ -1,6 +1,51 @@
 {
 	"name": "pl_LoadMultipleSheets_to_diff_Tables",
 	"properties": {
+		"activities": [
+			{
+				"name": "LookUp Excel SheetNames",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "Select SheetName from tbl_SheetName",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Lnk_LoadExcelFilesDB",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Loop thru each sheetName",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "LookUp Excel SheetNames",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('LookUp Excel SheetNames').output.value",
+						"type": "Expression"
+					}
+				}
+			}
+		],
 		"annotations": []
 	}
 }
