@@ -16,7 +16,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "Select SheetName from tbl_SheetName",
+						"sqlReaderQuery": "Select SheetName from dbo.tbl_SheetName",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
