@@ -2,7 +2,7 @@
 	"name": "ds_tbl_SheetName",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "create_tbl_withSheetName",
+			"referenceName": "Lnk_LoadExcelFiles",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
