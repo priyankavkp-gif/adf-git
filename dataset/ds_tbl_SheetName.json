@@ -5,8 +5,17 @@
 			"referenceName": "Lnk_LoadExcelFiles",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"p_TableName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_SheetName"
+		}
 	}
 }
