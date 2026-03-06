@@ -14,10 +14,25 @@
 		"Lnk_Blob_Strg_connectionString": {
 			"value": ""
 		},
+		"Lnk_LoadExcelDB_password": {
+			"value": ""
+		},
+		"Lnk_LoadExcelFiles_password": {
+			"value": ""
+		},
+		"Lnk_LoadExcelFiles2_password": {
+			"value": ""
+		},
 		"Lnk_Sales_Tgt_password": {
 			"value": ""
 		},
 		"Lnk_pinkzBlob_connectionString": {
+			"value": ""
+		},
+		"Lnk_pinkzstrgacct_connectionString": {
+			"value": ""
+		},
+		"create_tbl_withSheetName_password": {
 			"value": ""
 		},
 		"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
@@ -38,6 +53,33 @@
 		"Lnk_ADF_Sales_Target_properties_typeProperties_userName": {
 			"value": "pinkz"
 		},
+		"Lnk_LoadExcelDB_properties_typeProperties_server": {
+			"value": "pinkz.database.windows.net"
+		},
+		"Lnk_LoadExcelDB_properties_typeProperties_database": {
+			"value": "LoadExcelFiles"
+		},
+		"Lnk_LoadExcelDB_properties_typeProperties_userName": {
+			"value": "pinkz"
+		},
+		"Lnk_LoadExcelFiles_properties_typeProperties_server": {
+			"value": "pinkz.database.windows.net"
+		},
+		"Lnk_LoadExcelFiles_properties_typeProperties_database": {
+			"value": "LoadExcelFiles"
+		},
+		"Lnk_LoadExcelFiles_properties_typeProperties_userName": {
+			"value": "pinkz"
+		},
+		"Lnk_LoadExcelFiles2_properties_typeProperties_server": {
+			"value": "pinkz.database.windows.net"
+		},
+		"Lnk_LoadExcelFiles2_properties_typeProperties_database": {
+			"value": "LoadExcelFiles"
+		},
+		"Lnk_LoadExcelFiles2_properties_typeProperties_userName": {
+			"value": "pinkz"
+		},
 		"Lnk_Sales_Tgt_properties_typeProperties_server": {
 			"value": "pinkz.database.windows.net"
 		},
@@ -45,6 +87,15 @@
 			"value": "Sales_Tgt"
 		},
 		"Lnk_Sales_Tgt_properties_typeProperties_userName": {
+			"value": "pinkz"
+		},
+		"create_tbl_withSheetName_properties_typeProperties_server": {
+			"value": "pinkz.database.windows.net"
+		},
+		"create_tbl_withSheetName_properties_typeProperties_database": {
+			"value": "LoadExcelFiles"
+		},
+		"create_tbl_withSheetName_properties_typeProperties_userName": {
 			"value": "pinkz"
 		}
 	}

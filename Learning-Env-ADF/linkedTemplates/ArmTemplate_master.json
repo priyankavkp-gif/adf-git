@@ -19,6 +19,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Lnk_Blob_Strg'"
 		},
+		"Lnk_LoadExcelDB_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Lnk_LoadExcelDB'"
+		},
+		"Lnk_LoadExcelFiles_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Lnk_LoadExcelFiles'"
+		},
+		"Lnk_LoadExcelFiles2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Lnk_LoadExcelFiles2'"
+		},
 		"Lnk_Sales_Tgt_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Lnk_Sales_Tgt'"
@@ -26,6 +38,14 @@
 		"Lnk_pinkzBlob_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Lnk_pinkzBlob'"
+		},
+		"Lnk_pinkzstrgacct_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Lnk_pinkzstrgacct'"
+		},
+		"create_tbl_withSheetName_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'create_tbl_withSheetName'"
 		},
 		"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
 			"type": "string",
@@ -51,6 +71,42 @@
 			"type": "string",
 			"defaultValue": "pinkz"
 		},
+		"Lnk_LoadExcelDB_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "pinkz.database.windows.net"
+		},
+		"Lnk_LoadExcelDB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "LoadExcelFiles"
+		},
+		"Lnk_LoadExcelDB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "pinkz"
+		},
+		"Lnk_LoadExcelFiles_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "pinkz.database.windows.net"
+		},
+		"Lnk_LoadExcelFiles_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "LoadExcelFiles"
+		},
+		"Lnk_LoadExcelFiles_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "pinkz"
+		},
+		"Lnk_LoadExcelFiles2_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "pinkz.database.windows.net"
+		},
+		"Lnk_LoadExcelFiles2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "LoadExcelFiles"
+		},
+		"Lnk_LoadExcelFiles2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "pinkz"
+		},
 		"Lnk_Sales_Tgt_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "pinkz.database.windows.net"
@@ -60,6 +116,18 @@
 			"defaultValue": "Sales_Tgt"
 		},
 		"Lnk_Sales_Tgt_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "pinkz"
+		},
+		"create_tbl_withSheetName_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "pinkz.database.windows.net"
+		},
+		"create_tbl_withSheetName_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "LoadExcelFiles"
+		},
+		"create_tbl_withSheetName_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "pinkz"
 		},
@@ -99,11 +167,26 @@
 					"Lnk_Blob_Strg_connectionString": {
 						"value": "[parameters('Lnk_Blob_Strg_connectionString')]"
 					},
+					"Lnk_LoadExcelDB_password": {
+						"value": "[parameters('Lnk_LoadExcelDB_password')]"
+					},
+					"Lnk_LoadExcelFiles_password": {
+						"value": "[parameters('Lnk_LoadExcelFiles_password')]"
+					},
+					"Lnk_LoadExcelFiles2_password": {
+						"value": "[parameters('Lnk_LoadExcelFiles2_password')]"
+					},
 					"Lnk_Sales_Tgt_password": {
 						"value": "[parameters('Lnk_Sales_Tgt_password')]"
 					},
 					"Lnk_pinkzBlob_connectionString": {
 						"value": "[parameters('Lnk_pinkzBlob_connectionString')]"
+					},
+					"Lnk_pinkzstrgacct_connectionString": {
+						"value": "[parameters('Lnk_pinkzstrgacct_connectionString')]"
+					},
+					"create_tbl_withSheetName_password": {
+						"value": "[parameters('create_tbl_withSheetName_password')]"
 					},
 					"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
 						"value": "[parameters('Lnk_ADF_Sales_Source_properties_typeProperties_server')]"
@@ -123,6 +206,33 @@
 					"Lnk_ADF_Sales_Target_properties_typeProperties_userName": {
 						"value": "[parameters('Lnk_ADF_Sales_Target_properties_typeProperties_userName')]"
 					},
+					"Lnk_LoadExcelDB_properties_typeProperties_server": {
+						"value": "[parameters('Lnk_LoadExcelDB_properties_typeProperties_server')]"
+					},
+					"Lnk_LoadExcelDB_properties_typeProperties_database": {
+						"value": "[parameters('Lnk_LoadExcelDB_properties_typeProperties_database')]"
+					},
+					"Lnk_LoadExcelDB_properties_typeProperties_userName": {
+						"value": "[parameters('Lnk_LoadExcelDB_properties_typeProperties_userName')]"
+					},
+					"Lnk_LoadExcelFiles_properties_typeProperties_server": {
+						"value": "[parameters('Lnk_LoadExcelFiles_properties_typeProperties_server')]"
+					},
+					"Lnk_LoadExcelFiles_properties_typeProperties_database": {
+						"value": "[parameters('Lnk_LoadExcelFiles_properties_typeProperties_database')]"
+					},
+					"Lnk_LoadExcelFiles_properties_typeProperties_userName": {
+						"value": "[parameters('Lnk_LoadExcelFiles_properties_typeProperties_userName')]"
+					},
+					"Lnk_LoadExcelFiles2_properties_typeProperties_server": {
+						"value": "[parameters('Lnk_LoadExcelFiles2_properties_typeProperties_server')]"
+					},
+					"Lnk_LoadExcelFiles2_properties_typeProperties_database": {
+						"value": "[parameters('Lnk_LoadExcelFiles2_properties_typeProperties_database')]"
+					},
+					"Lnk_LoadExcelFiles2_properties_typeProperties_userName": {
+						"value": "[parameters('Lnk_LoadExcelFiles2_properties_typeProperties_userName')]"
+					},
 					"Lnk_Sales_Tgt_properties_typeProperties_server": {
 						"value": "[parameters('Lnk_Sales_Tgt_properties_typeProperties_server')]"
 					},
@@ -131,6 +241,15 @@
 					},
 					"Lnk_Sales_Tgt_properties_typeProperties_userName": {
 						"value": "[parameters('Lnk_Sales_Tgt_properties_typeProperties_userName')]"
+					},
+					"create_tbl_withSheetName_properties_typeProperties_server": {
+						"value": "[parameters('create_tbl_withSheetName_properties_typeProperties_server')]"
+					},
+					"create_tbl_withSheetName_properties_typeProperties_database": {
+						"value": "[parameters('create_tbl_withSheetName_properties_typeProperties_database')]"
+					},
+					"create_tbl_withSheetName_properties_typeProperties_userName": {
+						"value": "[parameters('create_tbl_withSheetName_properties_typeProperties_userName')]"
 					}
 				}
 			},
