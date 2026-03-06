@@ -1,0 +1,29 @@
+{
+	"name": "ds_DetailsExcel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Lnk_pinkzstrgacct",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_SheetName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": {
+				"value": "@dataset().p_SheetName",
+				"type": "Expression"
+			},
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Details_3062026.xlsx",
+				"container": "files-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
