@@ -1,6 +1,100 @@
 {
 	"name": "pl_Excel_to_DB_NoLookUp",
 	"properties": {
+		"activities": [
+			{
+				"name": "Loop thru sheet names from file",
+				"type": "ForEach",
+				"dependsOn": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.SheetNames",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy from excel to db",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ExcelSource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_Details",
+									"type": "DatasetReference",
+									"parameters": {
+										"ds_param_SheetName": {
+											"value": "@item().SheetName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_tableName",
+									"type": "DatasetReference",
+									"parameters": {
+										"p_tableName": {
+											"value": "@item().SheetName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"SheetNames": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"SheetName": "Customers"
+					},
+					{
+						"SheetName": "Product"
+					},
+					{
+						"SheetName": "Orders"
+					}
+				]
+			}
+		},
 		"annotations": []
 	}
 }

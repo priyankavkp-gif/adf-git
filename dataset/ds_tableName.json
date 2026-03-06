@@ -1,0 +1,24 @@
+{
+	"name": "ds_tableName",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Lnk_LoadExcelFiles",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_tableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().p_tableName",
+				"type": "Expression"
+			}
+		}
+	}
+}
