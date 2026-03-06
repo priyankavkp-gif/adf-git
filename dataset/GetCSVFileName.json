@@ -1,0 +1,23 @@
+{
+	"name": "GetCSVFileName",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Lnk_pinkzstrgacct",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "CSV",
+				"container": "files-container"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
