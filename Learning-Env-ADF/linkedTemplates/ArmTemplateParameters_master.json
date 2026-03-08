@@ -35,6 +35,12 @@
 		"create_tbl_withSheetName_password": {
 			"value": ""
 		},
+		"lnk_TargetDB_password": {
+			"value": ""
+		},
+		"lnk_pinkzstorageacct_connectionString": {
+			"value": ""
+		},
 		"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
 			"value": "pinkz.database.windows.net"
 		},
@@ -96,6 +102,15 @@
 			"value": "LoadExcelFiles"
 		},
 		"create_tbl_withSheetName_properties_typeProperties_userName": {
+			"value": "pinkz"
+		},
+		"lnk_TargetDB_properties_typeProperties_server": {
+			"value": "pinkz.database.windows.net"
+		},
+		"lnk_TargetDB_properties_typeProperties_database": {
+			"value": "TargetDB"
+		},
+		"lnk_TargetDB_properties_typeProperties_userName": {
 			"value": "pinkz"
 		},
 		"containerUri": {
