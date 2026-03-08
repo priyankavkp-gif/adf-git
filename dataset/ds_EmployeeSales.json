@@ -1,0 +1,16 @@
+{
+	"name": "ds_EmployeeSales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lnk_TargetDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_employees"
+		}
+	}
+}
