@@ -1,0 +1,22 @@
+{
+	"name": "ds_mergedSet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lnk_pinkzstorageacct",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "pinkz-input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
