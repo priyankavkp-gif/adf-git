@@ -1,0 +1,11 @@
+{
+	"name": "lnk_adex_Sales",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDataExplorer",
+		"typeProperties": {
+			"endpoint": "https://adexcluster.eastus2.kusto.windows.net",
+			"database": "ADX_DB"
+		}
+	}
+}
