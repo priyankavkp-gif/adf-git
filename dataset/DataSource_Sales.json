@@ -1,0 +1,23 @@
+{
+	"name": "DataSource_Sales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Lnk_pinkzstrgacct",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SALES_DETAILS.CSV",
+				"container": "pinkz-container"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
