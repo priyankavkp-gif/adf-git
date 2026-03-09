@@ -9,7 +9,7 @@
 		"type": "AzureDataExplorerTable",
 		"schema": [],
 		"typeProperties": {
-			"table": "SALES_transactions"
+			"table": "Sales_Details"
 		}
 	}
 }
