@@ -38,6 +38,9 @@
 		"lnk_TargetDB_password": {
 			"value": ""
 		},
+		"lnk_blobstrg_pinkz_connectionString": {
+			"value": ""
+		},
 		"lnk_pinkzstorageacct_connectionString": {
 			"value": ""
 		},
@@ -112,6 +115,12 @@
 		},
 		"lnk_TargetDB_properties_typeProperties_userName": {
 			"value": "pinkz"
+		},
+		"lnk_adex_Sales_properties_typeProperties_endpoint": {
+			"value": "https://adexcluster.eastus2.kusto.windows.net"
+		},
+		"lnk_adex_Sales_properties_typeProperties_database": {
+			"value": "ADX_DB"
 		},
 		"containerUri": {
 			"value": ""
