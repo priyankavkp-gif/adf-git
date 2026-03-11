@@ -41,6 +41,12 @@
 		"lnk_blobstrg_pinkz_connectionString": {
 			"value": ""
 		},
+		"lnk_mysql_db_connectionString": {
+			"value": ""
+		},
+		"lnk_mysql_pmp_password": {
+			"value": ""
+		},
 		"lnk_pinkzstorageacct_connectionString": {
 			"value": ""
 		},
@@ -121,6 +127,15 @@
 		},
 		"lnk_adex_Sales_properties_typeProperties_database": {
 			"value": "ADX_DB"
+		},
+		"lnk_mysql_pmp_properties_typeProperties_server": {
+			"value": "pmp-mysql-server"
+		},
+		"lnk_mysql_pmp_properties_typeProperties_database": {
+			"value": "salesdb"
+		},
+		"lnk_mysql_pmp_properties_typeProperties_username": {
+			"value": "pmp"
 		},
 		"containerUri": {
 			"value": ""

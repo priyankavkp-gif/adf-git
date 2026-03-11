@@ -55,6 +55,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'lnk_blobstrg_pinkz'"
 		},
+		"lnk_mysql_db_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'lnk_mysql_db'"
+		},
+		"lnk_mysql_pmp_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'lnk_mysql_pmp'"
+		},
 		"lnk_pinkzstorageacct_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'lnk_pinkzstorageacct'"
@@ -162,6 +170,18 @@
 		"lnk_adex_Sales_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "ADX_DB"
+		},
+		"lnk_mysql_pmp_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "pmp-mysql-server"
+		},
+		"lnk_mysql_pmp_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "salesdb"
+		},
+		"lnk_mysql_pmp_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "pmp"
 		}
 	},
 	"variables": {
@@ -411,6 +431,42 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/lnk_mysql_db')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureMySql",
+				"typeProperties": {
+					"connectionString": "[parameters('lnk_mysql_db_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/lnk_mysql_pmp')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "MySql",
+				"typeProperties": {
+					"server": "[parameters('lnk_mysql_pmp_properties_typeProperties_server')]",
+					"port": 3306,
+					"database": "[parameters('lnk_mysql_pmp_properties_typeProperties_database')]",
+					"username": "[parameters('lnk_mysql_pmp_properties_typeProperties_username')]",
+					"sslMode": 1,
+					"useSystemTrustStore": 0,
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('lnk_mysql_pmp_password')]"
+					},
+					"driverVersion": "v2"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/lnk_pinkzstorageacct')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -506,48 +562,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/adex_Sales')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "lnk_adex_Sales",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureDataExplorerTable",
-				"schema": [],
-				"typeProperties": {
-					"table": "Sales_Details"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lnk_adex_Sales')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ds_EmployeeSales')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "lnk_TargetDB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "tbl_employees"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lnk_TargetDB')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_SalesDB')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
