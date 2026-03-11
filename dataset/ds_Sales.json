@@ -1,0 +1,15 @@
+{
+	"name": "ds_Sales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lnk_mysql_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureMySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "tbl_sales"
+		}
+	}
+}
