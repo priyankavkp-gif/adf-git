@@ -67,6 +67,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'lnk_pinkzstorageacct'"
 		},
+		"lnk_tbl_sales_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'lnk_tbl_sales'"
+		},
+		"lnk_pinkzsa_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'lnk_pinkzsa'"
+		},
 		"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "pinkz.database.windows.net"
@@ -254,6 +262,12 @@
 					},
 					"lnk_pinkzstorageacct_connectionString": {
 						"value": "[parameters('lnk_pinkzstorageacct_connectionString')]"
+					},
+					"lnk_tbl_sales_connectionString": {
+						"value": "[parameters('lnk_tbl_sales_connectionString')]"
+					},
+					"lnk_pinkzsa_connectionString": {
+						"value": "[parameters('lnk_pinkzsa_connectionString')]"
 					},
 					"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
 						"value": "[parameters('Lnk_ADF_Sales_Source_properties_typeProperties_server')]"

@@ -50,6 +50,12 @@
 		"lnk_pinkzstorageacct_connectionString": {
 			"value": ""
 		},
+		"lnk_tbl_sales_connectionString": {
+			"value": ""
+		},
+		"lnk_pinkzsa_connectionString": {
+			"value": ""
+		},
 		"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
 			"value": "pinkz.database.windows.net"
 		},
