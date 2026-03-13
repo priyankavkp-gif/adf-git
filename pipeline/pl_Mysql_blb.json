@@ -17,6 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureMySqlSource",
+						"query": "Select * from tbl_sales",
 						"queryTimeout": "02:00:00"
 					},
 					"sink": {
