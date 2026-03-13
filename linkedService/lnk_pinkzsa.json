@@ -1,0 +1,11 @@
+{
+	"name": "lnk_pinkzsa",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://pinkyzstrgaccount.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	}
+}
