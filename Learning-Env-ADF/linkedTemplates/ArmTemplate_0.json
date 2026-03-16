@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Lnk_ADF_Sales_Target'"
 		},
+		"Lnk_BlobStrg_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Lnk_BlobStrg'"
+		},
 		"Lnk_Blob_Strg_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Lnk_Blob_Strg'"
@@ -63,6 +67,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'lnk_mysql_pmp'"
 		},
+		"lnk_pinkzsa_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'lnk_pinkzsa'"
+		},
 		"lnk_pinkzstorageacct_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'lnk_pinkzstorageacct'"
@@ -70,10 +78,6 @@
 		"lnk_tbl_sales_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'lnk_tbl_sales'"
-		},
-		"lnk_pinkzsa_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'lnk_pinkzsa'"
 		},
 		"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
 			"type": "string",
@@ -236,6 +240,19 @@
 						"type": "SecureString",
 						"value": "[parameters('Lnk_ADF_Sales_Target_password')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Lnk_BlobStrg')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('Lnk_BlobStrg_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -475,6 +492,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/lnk_pinkzsa')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('lnk_pinkzsa_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/lnk_pinkzstorageacct')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -501,71 +531,26 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/lnk_pinkzsa')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/Trigger_1av')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureBlobStorage",
+				"runtimeState": "Stopped",
+				"type": "TumblingWindowTrigger",
 				"typeProperties": {
-					"connectionString": "[parameters('lnk_pinkzsa_connectionString')]"
+					"frequency": "Minute",
+					"interval": 5,
+					"startTime": "2026-03-16T13:50:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_SalesDetails')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Lnk_pinkzstrgacct",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Lnk_pinkzstrgacct')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DataSource_Sales')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Lnk_pinkzstrgacct",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SALES_DETAILS.CSV",
-						"container": "pinkz-container"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Lnk_pinkzstrgacct')]"
-			]
 		}
 	]
 }

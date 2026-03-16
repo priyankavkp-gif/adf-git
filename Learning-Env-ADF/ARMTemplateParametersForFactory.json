@@ -11,6 +11,9 @@
 		"Lnk_ADF_Sales_Target_password": {
 			"value": ""
 		},
+		"Lnk_BlobStrg_connectionString": {
+			"value": ""
+		},
 		"Lnk_Blob_Strg_connectionString": {
 			"value": ""
 		},
@@ -47,13 +50,13 @@
 		"lnk_mysql_pmp_password": {
 			"value": ""
 		},
+		"lnk_pinkzsa_connectionString": {
+			"value": ""
+		},
 		"lnk_pinkzstorageacct_connectionString": {
 			"value": ""
 		},
 		"lnk_tbl_sales_connectionString": {
-			"value": ""
-		},
-		"lnk_pinkzsa_connectionString": {
 			"value": ""
 		},
 		"Lnk_ADF_Sales_Source_properties_typeProperties_server": {
@@ -142,6 +145,12 @@
 		},
 		"lnk_mysql_pmp_properties_typeProperties_username": {
 			"value": "pmp"
+		},
+		"Trigger_q6r_properties_pipeline_parameters_windowStart": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"Trigger_q6r_properties_pipeline_parameters_windowEnd": {
+			"value": "@trigger().outputs.windowEndTime"
 		}
 	}
 }
