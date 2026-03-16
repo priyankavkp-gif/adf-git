@@ -1,0 +1,17 @@
+{
+	"name": "SourceDataset_na1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Lnk_BlobStrg",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "input-files"
+			}
+		}
+	}
+}
