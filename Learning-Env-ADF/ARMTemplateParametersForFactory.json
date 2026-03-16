@@ -146,10 +146,10 @@
 		"lnk_mysql_pmp_properties_typeProperties_username": {
 			"value": "pmp"
 		},
-		"Trigger_q6r_properties_pipeline_parameters_windowStart": {
+		"Trigger_na1_properties_pipeline_parameters_windowStart": {
 			"value": "@trigger().outputs.windowStartTime"
 		},
-		"Trigger_q6r_properties_pipeline_parameters_windowEnd": {
+		"Trigger_na1_properties_pipeline_parameters_windowEnd": {
 			"value": "@trigger().outputs.windowEndTime"
 		}
 	}

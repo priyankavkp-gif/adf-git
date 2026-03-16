@@ -195,11 +195,11 @@
 			"type": "string",
 			"defaultValue": "pmp"
 		},
-		"Trigger_q6r_properties_pipeline_parameters_windowStart": {
+		"Trigger_na1_properties_pipeline_parameters_windowStart": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowStartTime"
 		},
-		"Trigger_q6r_properties_pipeline_parameters_windowEnd": {
+		"Trigger_na1_properties_pipeline_parameters_windowEnd": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowEndTime"
 		}
@@ -209,13 +209,13 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/CopyPipeline_IncrementalLoad')]",
+			"name": "[concat(parameters('factoryName'), '/CopyPipeline_na1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy_q6r",
+						"name": "Copy_na1",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -240,7 +240,7 @@
 								"type": "BinarySource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
+									"recursive": false,
 									"modifiedDatetimeStart": {
 										"value": "@pipeline().parameters.windowStart",
 										"type": "Expression"
@@ -250,7 +250,7 @@
 										"type": "Expression"
 									},
 									"wildcardFileName": "*",
-									"deleteFilesAfterCompletion": true
+									"deleteFilesAfterCompletion": false
 								},
 								"formatSettings": {
 									"type": "BinaryReadSettings"
@@ -265,20 +265,21 @@
 							"enableStaging": false,
 							"enableSkipIncompatibleRow": false,
 							"skipErrorFile": {
-								"fileMissing": true
+								"fileMissing": false,
+								"fileForbidden": false
 							},
 							"validateDataConsistency": false
 						},
 						"inputs": [
 							{
-								"referenceName": "SourceDataset_q6r",
+								"referenceName": "SourceDataset_na1",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "DestinationDataset_q6r",
+								"referenceName": "DestinationDataset_na1",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -299,12 +300,34 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_q6r')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_q6r')]"
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_na1')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_na1')]"
 			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_1av')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Lnk_BlobStrg",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "output-files"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Lnk_BlobStrg')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_na1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -349,6 +372,28 @@
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_1av')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Lnk_BlobStrg",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "input-files"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Lnk_BlobStrg')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_na1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -744,7 +789,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_q6r')]",
+			"name": "[concat(parameters('factoryName'), '/Trigger_na1')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -752,20 +797,44 @@
 				"runtimeState": "Stopped",
 				"pipeline": {
 					"pipelineReference": {
-						"referenceName": "CopyPipeline_IncrementalLoad",
+						"referenceName": "CopyPipeline_na1",
 						"type": "PipelineReference"
 					},
 					"parameters": {
 						"windowStart": {
 							"type": "Expression",
-							"value": "[parameters('Trigger_q6r_properties_pipeline_parameters_windowStart')]"
+							"value": "[parameters('Trigger_na1_properties_pipeline_parameters_windowStart')]"
 						},
 						"windowEnd": {
 							"type": "Expression",
-							"value": "[parameters('Trigger_q6r_properties_pipeline_parameters_windowEnd')]"
+							"value": "[parameters('Trigger_na1_properties_pipeline_parameters_windowEnd')]"
 						}
 					}
 				},
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Minute",
+					"interval": 5,
+					"startTime": "2026-03-16T13:51:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_na1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Trigger_q6r')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
 				"type": "TumblingWindowTrigger",
 				"typeProperties": {
 					"frequency": "Minute",
@@ -779,9 +848,7 @@
 					"dependsOn": []
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_IncrementalLoad')]"
-			]
+			"dependsOn": []
 		}
 	]
 }

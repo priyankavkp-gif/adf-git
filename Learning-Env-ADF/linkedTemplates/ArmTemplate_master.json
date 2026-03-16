@@ -195,11 +195,11 @@
 			"type": "string",
 			"defaultValue": "pmp"
 		},
-		"Trigger_q6r_properties_pipeline_parameters_windowStart": {
+		"Trigger_na1_properties_pipeline_parameters_windowStart": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowStartTime"
 		},
-		"Trigger_q6r_properties_pipeline_parameters_windowEnd": {
+		"Trigger_na1_properties_pipeline_parameters_windowEnd": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowEndTime"
 		},
@@ -389,11 +389,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"Trigger_q6r_properties_pipeline_parameters_windowStart": {
-						"value": "[parameters('Trigger_q6r_properties_pipeline_parameters_windowStart')]"
+					"Trigger_na1_properties_pipeline_parameters_windowStart": {
+						"value": "[parameters('Trigger_na1_properties_pipeline_parameters_windowStart')]"
 					},
-					"Trigger_q6r_properties_pipeline_parameters_windowEnd": {
-						"value": "[parameters('Trigger_q6r_properties_pipeline_parameters_windowEnd')]"
+					"Trigger_na1_properties_pipeline_parameters_windowEnd": {
+						"value": "[parameters('Trigger_na1_properties_pipeline_parameters_windowEnd')]"
 					}
 				}
 			},
