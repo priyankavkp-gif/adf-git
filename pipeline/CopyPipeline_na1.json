@@ -28,6 +28,7 @@
 						"type": "BinarySource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
+							"maxConcurrentConnections": 30,
 							"recursive": false,
 							"modifiedDatetimeStart": {
 								"value": "@pipeline().parameters.windowStart",
