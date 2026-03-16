@@ -28,7 +28,7 @@
 						"type": "BinarySource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": false,
+							"recursive": true,
 							"modifiedDatetimeStart": {
 								"value": "@pipeline().parameters.windowStart",
 								"type": "Expression"
