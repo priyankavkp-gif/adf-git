@@ -1,6 +1,7 @@
 {
 	"name": "trigger1",
 	"properties": {
+		"description": "trigger1-tumbling window",
 		"annotations": [],
 		"runtimeState": "Started",
 		"type": "TumblingWindowTrigger",
